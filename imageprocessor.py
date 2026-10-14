@@ -1,5 +1,6 @@
 #Image is just a large array of numbers soo...
 image = [[0,   100, 200],[50,  150, 250],[255, 128, 10]]
+img = [[1,2,3,4,5], [6,7,8,9,10], [11,12,13,14,15],[16,17,18,19,20],[21,22,23,24,25]]
 
 def show(theimage):
     '''To print the given image'''
@@ -9,6 +10,7 @@ def show(theimage):
         print()
 print(f"The original")
 show(image)
+show(img)
 
 def invert(theimage):
     """To invert the given image and store it in a new array"""
@@ -62,6 +64,7 @@ def hflip(theimage):
         flipped.append(i[::-1])
     return flipped
 
+#doubt
 def rotate(theimage):
     '''Rotating an image'''
     m = len(theimage[0])
@@ -77,5 +80,22 @@ def rotate(theimage):
         i=0
         j+=1
     return result
-print("\n\nRotation:")
-print(rotate(image))
+def crop(theimage, v, n):
+    #5x5--> 4x4, remove one row and one column
+    # n = input("From where do you want to crop? l-left, r-right, u-up, d-down\t")
+    co = theimage.copy()
+    if n == 'u':
+        for i in range(v):
+            del co[0]
+    elif n == 'd':
+        for i in range(v):
+            del co[-1]
+    elif n == 'r':
+        for i in range(v):
+            for row in theimage:
+                del row[-1]
+    elif n == 'l':
+        for i in range(v):
+            for row in theimage:
+                del row[0]
+    return co
