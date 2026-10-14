@@ -1,0 +1,20 @@
+3 pixel wise operation 
+		Invert Done
+		Brightness adjustment Done
+		Thresholding Done
+
+Geometric Operation:
+		Flip Done
+		Rotate 
+		Crop
+
+Neighbourhood Operation:
+		Blur
+		Edge detection
+
+Bonus:
+		Extend to colour(RGB) images
+		Load a simple image format such as PPM
+
+Add:
+		Ascii art
