@@ -23,16 +23,6 @@ def invert(theimage):
             i[j] = 255-i[j]
     return inverted
 
-def brightness(theimg, amount):
-    '''To control the brightness'''
-    result = []
-    for row in theimg:
-        new_row = []
-        for v in row:
-            new_row.append(min(255, max(0, v + amount)))
-        result.append(new_row)
-    return result
-
 def brightness(img, amount):   # one-line version, same result
     return [[min(255, max(0, v + amount)) for v in row] for row in img]
 
@@ -63,7 +53,7 @@ def hflip(theimage):
 
 #doubt
 def transpose(theimage):
-    '''Rotating an image'''
+    '''I thought that for rotating it will be enough to take a transpose of the matrix but was wrong hence this code is of no use'''
     m = len(theimage[0])
     n = len(theimage)
     i,j = 0,0
@@ -77,9 +67,11 @@ def transpose(theimage):
         i=0
         j+=1
     return result
+
 def crop(theimage, v, n):
     #5x5--> 4x4, remove one row and one column
     # n = input("From where do you want to crop? l-left, r-right, u-up, d-down\t")
+    '''Crop'''
     co = theimage.copy()
     if n == 'u':
         for i in range(v):
@@ -98,6 +90,7 @@ def crop(theimage, v, n):
     return co
 
 def rotate(theimage, s):
+    '''Rotate the image by 90 degrees'''
     if s == 'l':
         m = len(theimage[0])
         copi = theimage[::-1].copy()
@@ -121,11 +114,35 @@ def rotate(theimage, s):
             crop(copi,1,'r')
         return result
 
-
-print('\n')
-show(rotate(image, 'l'))
-
-
-
-
 #Neighbourhood Operation
+
+def blur(theimage):
+    k = []
+    for i in range(3):
+        a = []
+        for j in range(3):
+            a.append(round(1/9,2))
+        k.append(a)
+    
+    print(k)
+
+blur(image)
+
+
+
+#Bonus
+
+def rgb(theimage):
+    result = []
+    for row in theimage:
+        a = []
+        k = []
+        for ele in row:
+            i = round(ele/3,2)
+            k.append(i)
+        a.append(k)
+    result.append(a)
+    return result
+show(rgb(image))
+
+
