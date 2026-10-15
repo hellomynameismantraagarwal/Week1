@@ -9,8 +9,9 @@ def show(theimage):
             print(j, end = ' ')
         print()
 print(f"The original")
-show(image)
 show(img)
+print('\n')
+show(image)
 
 def invert(theimage):
     """To invert the given image and store it in a new array"""
@@ -21,10 +22,6 @@ def invert(theimage):
         for j in range(len(i)):
             i[j] = 255-i[j]
     return inverted
-print(f"The inverted:")
-invert(image)
-print("the original?")
-invert(image)
 
 def brightness(theimg, amount):
     '''To control the brightness'''
@@ -65,7 +62,7 @@ def hflip(theimage):
     return flipped
 
 #doubt
-def rotate(theimage):
+def transpose(theimage):
     '''Rotating an image'''
     m = len(theimage[0])
     n = len(theimage)
@@ -99,3 +96,23 @@ def crop(theimage, v, n):
             for row in theimage:
                 del row[0]
     return co
+
+def rotate(theimage):
+    m = len(theimage[0])
+    copi = theimage.copy()
+    result = []
+    for i in range(m):
+        a = []
+        for row in copi:
+            a.append(row[-1])
+        result.append(a)
+        crop(copi,1,'r')
+    return result
+
+print('\n')
+show(rotate(image))
+
+
+
+
+#Neighbourhood Operation
