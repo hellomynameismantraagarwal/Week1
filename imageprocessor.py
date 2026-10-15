@@ -97,20 +97,33 @@ def crop(theimage, v, n):
                 del row[0]
     return co
 
-def rotate(theimage):
-    m = len(theimage[0])
-    copi = theimage.copy()
-    result = []
-    for i in range(m):
-        a = []
-        for row in copi:
-            a.append(row[-1])
-        result.append(a)
-        crop(copi,1,'r')
-    return result
+def rotate(theimage, s):
+    if s == 'l':
+        m = len(theimage[0])
+        copi = theimage[::-1].copy()
+        result = []
+        for i in range(m):
+            a = []
+            for row in copi:
+                a.append(row[0])
+            result.append(a)
+            crop(copi,1,'l')
+        return result
+    elif s == 'r':
+        m = len(theimage[0])
+        copi = theimage.copy()
+        result = []
+        for i in range(m):
+            a = []
+            for row in copi:
+                a.append(row[-1])
+            result.append(a)
+            crop(copi,1,'r')
+        return result
+
 
 print('\n')
-show(rotate(image))
+show(rotate(image, 'l'))
 
 
 
