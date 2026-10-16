@@ -146,3 +146,85 @@ def rgb(theimage):
 show(rgb(image))
 
 
+
+#MENU:
+def menu():
+    le = input('''Hello, welcome to image editor\n
+    type "new" to create a new image
+    type "demo" to edit the demo image
+    type "show" to show the image that you have selected
+    type "invert" to invert the selected image
+    type "brightness" to change the brightness of the image
+    type "threshold" to get full black and white version of your image
+    type "vflip" for verticaly flipping and "hflip" for horizontal flipping
+    type "crop" to crop your image
+    type "rotate" to rotate your image
+    type "help" if you want the instrucions again
+    type exit to exit\t''')
+
+    while(True):
+        demo = img.copy()
+        if le == "new":
+            r = int(input("Enter number of rows:\t"))
+            c = int(input("Enter number of columns:\t"))
+            imagi = []
+            for i in range(r):
+                t = []
+                for j in range(c):
+                    ele = int(input(f"Intensity for pixel for {i}th row and {c}th column:\t"))
+                    if ele>255:
+                        ele = 255
+                        print("Intensity can not be greater than 255")
+                    elif ele<0:
+                        ele = 0
+                        print("Intensity can not be less than 0")
+                    t.append(ele)
+                imagi.append(t)
+            print(f"Image created successfully")
+            show(imagi)
+            demo = imagi
+
+        elif le == "show":
+            show(demo)
+
+        elif le == "invert":
+            show(invert(demo))
+
+        elif le == "brightness":
+            v = int(input("Enter how much amount you want to change(-ve values for lowering):\t"))
+            show(brightness(demo, v))
+
+        elif le == "threshold":
+            show(threshold(demo))
+
+        elif le == "vflip":
+            show(vflip(demo))
+        elif le == "hflip":
+            show(hflip(demo))
+
+        elif le == "crop":
+            s = input("Enter the side you want to crop('l'->left, 'r'->right, 'd'->down, 'u'->up):\t")
+            n = int(input("Enter the amount you want to crop:\t"))
+            show(crop(demo, n, s))
+
+        elif le == "rotate":
+            s = input("Enter which side you want to rotate('l'clockwise, 'r'counterclockwise):\t")
+            show(rotate(demo, s))
+
+        elif le == "help":
+            print('''type "new" to create a new image
+    type "demo" to edit the demo image
+    type "show" to show the image that you have selected
+    type "invert" to invert the selected image
+    type "brightness" to change the brightness of the image
+    type "threshold" to get full black and white version of your image
+    type "vflip" for verticaly flipping and "hflip" for horizontal flipping
+    type "crop" to crop your image
+    type "rotate" to rotate your image
+    type "help" if you want the instrucions again
+    type exit to exit''')
+
+        elif le == "exit":
+            break
+
+        le = input("Enter what to do now:\t")
